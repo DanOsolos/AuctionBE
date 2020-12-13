@@ -9,5 +9,3 @@
 
     <include file="db/changelog/test.sql"/>
 </databaseChangeLog>
-
-
