@@ -20,7 +20,7 @@ public class Purchasing {
     @Column (name = "auction_id")
     private int auctionId;
 
-    @Column (name = "auction_id")
+    @Column (name = "user_id")
     private int userId;
 
     @Column
