@@ -17,10 +17,12 @@ public class Bidding {
     @Column
     private int price;
 
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn (name = "auction_id")
     private Auction auction;
 
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn (name = "user_id")
     private User user;

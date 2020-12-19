@@ -20,6 +20,7 @@ public class Address {
     @Column
     private String address;
 
+    @ToString.Exclude
     @OneToOne
     @JoinColumn (name = "user_id")
     private User user;

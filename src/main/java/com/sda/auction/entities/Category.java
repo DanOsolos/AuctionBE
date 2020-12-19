@@ -21,6 +21,7 @@ public class Category {
     @Column
     private String description;
 
+    @ToString.Exclude
     @OneToMany (mappedBy = "category")
     private List<Auction> auctionList;
 }
