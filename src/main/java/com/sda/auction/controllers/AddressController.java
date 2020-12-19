@@ -11,5 +11,4 @@ public class AddressController {
     public AddressController(AddressService addressService) {
         this.addressService = addressService;
     }
-
 }
