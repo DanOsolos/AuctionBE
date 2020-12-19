@@ -14,15 +14,16 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column (name = "user_id")
-    private int userId;
 
     @Column
     private String city;
 
     @Column
     private String address;
+
+    @OneToOne
+    @JoinColumn (name = "user_id")
+    private User user;
 }

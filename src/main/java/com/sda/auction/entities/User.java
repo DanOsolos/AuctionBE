@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class User {
     @Id
-    @GeneratedValue (strategy = GenerationType.SEQUENCE)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -32,4 +33,13 @@ public class User {
 
     @Column
     private String type;
+
+    @OneToOne(mappedBy = "user")
+    private Address address;
+
+    @OneToMany (mappedBy = "user")
+    private List<Bidding> biddingList;
+
+    @OneToMany (mappedBy = "user")
+    private List<Purchasing> purchasingList;
 }

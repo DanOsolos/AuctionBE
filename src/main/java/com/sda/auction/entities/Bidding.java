@@ -17,13 +17,14 @@ public class Bidding {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
-    @Column (name = "auction_id")
-    private int auctionId;
-
-    @Column (name = "user_id")
-    private int userId;
-
     @Column
     private int price;
 
+    @ManyToOne
+    @JoinColumn (name = "auction_id")
+    private Auction auction;
+
+    @ManyToOne
+    @JoinColumn (name = "user_id")
+    private User user;
 }

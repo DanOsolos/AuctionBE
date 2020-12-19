@@ -1,12 +1,15 @@
 package com.sda.auction.entities;
 
+import liquibase.pro.packaged.B;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,7 +18,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Auction {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -27,9 +30,6 @@ public class Auction {
     @Column
     private String photos;
 
-    @Column (name = "category_id")
-    private int categoryId;
-
     @Column (name = "minimum_price")
     private int minimumPrice;
 
@@ -37,8 +37,19 @@ public class Auction {
     private int buyNow;
 
     @Column (name = "start_date")
-    private Date startDate;
+    private LocalDateTime startDate;
 
     @Column (name = "end_date")
-    private Date endDate;
+    private LocalDateTime endDate;
+
+    @OneToMany (mappedBy = "auction")
+    private List<Bidding> biddingList;
+
+    @OneToOne (mappedBy = "auction")
+    private Purchasing purchasing;
+
+    @ManyToOne
+    @JoinColumn (name = "category_id")
+    private Category category;
+
 }

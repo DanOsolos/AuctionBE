@@ -14,15 +14,14 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Purchasing {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column (name = "auction_id")
-    private int auctionId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column (name = "user_id")
-    private int userId;
-
-    @Column
-    private int price;
+    @OneToOne
+    @JoinColumn(name = "auction_id")
+    private Auction auction;
 }
