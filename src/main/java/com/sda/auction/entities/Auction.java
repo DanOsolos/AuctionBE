@@ -1,10 +1,7 @@
 package com.sda.auction.entities;
 
 import liquibase.pro.packaged.B;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,10 +9,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table (name = "auction")
 public class Auction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
