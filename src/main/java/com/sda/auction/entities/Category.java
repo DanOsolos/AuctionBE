@@ -1,5 +1,6 @@
 package com.sda.auction.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Category {
     private String description;
 
     @ToString.Exclude
+    @JsonIgnore
     @OneToMany (mappedBy = "category")
     private List<Auction> auctionList;
 }
