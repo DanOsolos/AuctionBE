@@ -2,6 +2,8 @@ package com.sda.auction.controllers;
 
 import com.sda.auction.entities.Address;
 import com.sda.auction.entities.User;
+import com.sda.auction.exceptions.AuctionNotFoundException;
+import com.sda.auction.exceptions.UserNotFoundException;
 import com.sda.auction.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,28 +16,30 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final String PATH = "/user";
 
     @GetMapping("/users")
     public List<User> findAllUsers(){
         return userService.findAllUsers();
     }
 
-    @GetMapping("/users/{id}")
-    public User getUserById (@PathVariable("id") Integer id) {
+    @GetMapping(PATH + "/{id}")
+    public User getUserById (@PathVariable("id") Integer id) throws UserNotFoundException {
         return userService.getUserById(id);
+
     }
 
-    @PostMapping("/user")
+    @PostMapping(PATH)
     public void createUser (@RequestBody User user){
         userService.createUser(user);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping(PATH + "/{id}")
     public void deleteUserById (@PathVariable("id") Integer id) {
         userService.deleteUserById(id);
     }
 
-    @PutMapping("/user")
+    @PutMapping(PATH)
     public User updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }

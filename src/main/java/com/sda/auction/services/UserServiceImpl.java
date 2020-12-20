@@ -1,14 +1,14 @@
 package com.sda.auction.services;
 
 import com.sda.auction.entities.User;
+import com.sda.auction.exceptions.AuctionNotFoundException;
+import com.sda.auction.exceptions.UserNotFoundException;
 import com.sda.auction.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUserById(Integer id) {
-        return userRepository.findById(id).get();
+    public User getUserById(Integer id) throws UserNotFoundException {
+        return userRepository.findById(id).orElseThrow(()-> new UserNotFoundException("Could not find user"));
     }
 
     @Override
