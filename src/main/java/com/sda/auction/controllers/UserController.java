@@ -1,8 +1,6 @@
 package com.sda.auction.controllers;
 
-import com.sda.auction.entities.Address;
 import com.sda.auction.entities.User;
-import com.sda.auction.exceptions.AuctionNotFoundException;
 import com.sda.auction.exceptions.UserNotFoundException;
 import com.sda.auction.services.UserService;
 import lombok.AllArgsConstructor;
@@ -16,7 +14,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final String PATH = "/user";
+    private static final String PATH = "/user";
 
     @GetMapping("/users")
     public List<User> findAllUsers(){
@@ -26,7 +24,6 @@ public class UserController {
     @GetMapping(PATH + "/{id}")
     public User getUserById (@PathVariable("id") Integer id) throws UserNotFoundException {
         return userService.getUserById(id);
-
     }
 
     @PostMapping(PATH)
