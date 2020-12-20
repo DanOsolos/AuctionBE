@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,6 +25,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void createUser(User user) {
+        user.setCreationDate(Date.from(Instant.now()));
         userRepository.save(user);
     }
 
@@ -35,8 +40,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User updateUser(User user, Integer id) {
-        user = userRepository.findById(id).get();
+    public User updateUser(User user) {
         return userRepository.save(user);
     }
 }

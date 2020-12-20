@@ -25,7 +25,7 @@ public class Auction {
     private String description;
 
     @Column
-    private String photos;
+    private String photo;
 
     @Column (name = "minimum_price")
     private int minimumPrice;

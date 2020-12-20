@@ -1,5 +1,6 @@
 package com.sda.auction.controllers;
 
+import com.sda.auction.entities.Address;
 import com.sda.auction.entities.User;
 import com.sda.auction.services.UserService;
 import lombok.AllArgsConstructor;
@@ -34,9 +35,9 @@ public class UserController {
         userService.deleteUserById(id);
     }
 
-    @PutMapping("/user/{id}")
-    public User updateUser(@PathVariable Integer id, @RequestBody User user){
-        return userService.updateUser(user, id);
+    @PutMapping("/user")
+    public User updateUser(@RequestBody User user){
+        return userService.updateUser(user);
     }
 
 }
