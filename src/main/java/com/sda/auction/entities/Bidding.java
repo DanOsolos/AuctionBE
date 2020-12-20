@@ -14,9 +14,6 @@ public class Bidding {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
-    @Column
-    private int price;
-
     @ToString.Exclude
     @ManyToOne
     @JoinColumn (name = "auction_id")

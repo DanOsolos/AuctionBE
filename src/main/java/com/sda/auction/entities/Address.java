@@ -1,5 +1,6 @@
 package com.sda.auction.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,9 +19,10 @@ public class Address {
     private String city;
 
     @Column
-    private String address;
+    private String province;
 
     @ToString.Exclude
+    @JsonIgnore
     @OneToOne
     @JoinColumn (name = "user_id")
     private User user;

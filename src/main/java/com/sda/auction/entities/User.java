@@ -3,6 +3,7 @@ package com.sda.auction.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table (name = "user")
 public class User {
     @Id
@@ -25,13 +27,13 @@ public class User {
     @Column
     private String name;
 
-    @Column (name = "creation_date")
+    @Column (name = "creation_date", updatable = false)
     private Date creationDate;
 
     @Column
     private String type;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Address address;
 
     @OneToMany (mappedBy = "user")
