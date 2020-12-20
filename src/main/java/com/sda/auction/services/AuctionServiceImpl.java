@@ -1,6 +1,7 @@
 package com.sda.auction.services;
 
 import com.sda.auction.entities.Auction;
+import com.sda.auction.exceptions.AuctionNotFoundException;
 import com.sda.auction.repositories.AuctionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class AuctionServiceImpl implements AuctionService {
     }
 
     @Override
-    public Optional<Auction> getAuctionById(Integer id) {
-        return auctionRepository.findById(id);
+    public Auction getAuctionById(Integer id) throws AuctionNotFoundException {
+        return auctionRepository.findById(id).orElseThrow(()-> new AuctionNotFoundException("Could not find auction"));
     }
 
     @Override
